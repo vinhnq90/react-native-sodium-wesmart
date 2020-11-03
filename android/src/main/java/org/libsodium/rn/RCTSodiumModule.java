@@ -521,7 +521,8 @@ public class RCTSodiumModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void crypto_sign_detached(final String msg, final String sk, final Promise p) {
     try {
-      byte[] msgb = Base64.decode(msg, Base64.NO_WRAP);
+      //byte[] msgb = Base64.decode(msg, Base64.NO_WRAP);
+      byte[] msgb = msg.getBytes();
       byte[] skb  = Base64.decode(sk, Base64.NO_WRAP);
       if (skb.length != Sodium.crypto_sign_secretkeybytes()){
         p.reject(ESODIUM,ERR_BAD_KEY);
